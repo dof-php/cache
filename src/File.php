@@ -125,6 +125,9 @@ class File extends Cache
         $start = \microtime(true);
 
         $value = \base64_encode(\serialize($value));
+        if ($expiration > 0) {
+            $expiration = \intval($start) + $expiration;
+        }
 
         Arr::save([$expiration, $value], $this->path($key));
 
