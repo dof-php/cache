@@ -78,6 +78,7 @@ class File extends Cache
         if (\is_file($path)) {
             list($expire, $value) = $this->parse($path);
             if (($expire > 0) && ($start >= $expire)) {
+                $value = null;    // MUST set origin value to null coz it will be returned later
                 \unlink($path);
             } else {
                 $_value = \base64_decode($value);
