@@ -19,6 +19,15 @@ abstract class Cache implements Cachable
     const STORAGE = 'cache';
     const PREFIX = '__CACHE';
 
+    public function flush(string $key)
+    {
+        if ($this->has($key)) {
+            $value = $this->get($key);
+            $this->del($key);
+            return $value;
+        }
+    }
+
     final public static function name(string $key) : string
     {
         return \join(':', [self::PREFIX, $key]);

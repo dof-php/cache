@@ -10,6 +10,8 @@ interface Cachable
 
     public function get(string $key);
 
+    public function flush(string $key);
+
     public function set(string $key, $value, int $expiration = 0);
 
     public function del(string $key);
